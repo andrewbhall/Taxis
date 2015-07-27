@@ -24,6 +24,7 @@ cabs <- data.cabs %>% mutate(
 
 # for every contribution record, find if taxi license
 # note there are likely many false positive matches here
+# also missing some merges due to middle initials?
 merged <- money %>% semi_join(cabs, by="name")
 
 # also look at donors who self disclose as cab drivers/owners
