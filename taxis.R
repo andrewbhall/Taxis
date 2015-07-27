@@ -37,3 +37,20 @@ self.reported.taxi <-
       pattern="(^[tT]axi\\b)|(^[cC]ab\\b)|(^[Mm]edallion\\b)", x = occ
     )
   )
+
+
+# Look at candidates who get most money from taxis
+by_cand <-  group_by(self.reported.taxi, recipient)
+total.contributions <- arrange( 
+                        summarise(by_cand,
+                                 count=n(),
+                                 tot.money=sum(amnt)
+                                 ),
+                        desc(tot.money)
+                        )
+
+# highest totals:
+head(total.contributions)
+
+
+
